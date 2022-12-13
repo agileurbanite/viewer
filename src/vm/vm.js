@@ -20,6 +20,7 @@ import { Typeahead } from "react-bootstrap-typeahead";
 import styled, { isStyledComponent, keyframes } from "styled-components";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import Big from "big.js";
+import {IconButton} from "@chakra-ui/react";
 
 const LoopLimit = 10000;
 const MaxDepth = 32;
@@ -395,6 +396,8 @@ class VmStack {
       return <InfiniteScroll {...attributes}>{children}</InfiniteScroll>;
     } else if (element === "Tooltip") {
       return <Tooltip {...attributes}>{children}</Tooltip>;
+    } else if (element === "IconButton") {
+      return <IconButton {...attributes}>{children}</IconButton>;
     } else if (element === "OverlayTrigger") {
       return (
         <OverlayTrigger {...attributes}>

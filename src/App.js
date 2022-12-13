@@ -4,6 +4,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "@near-wallet-selector/modal-ui/styles.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 import "App.scss";
+import {ChakraProvider} from '@chakra-ui/react';
 import { HashRouter as Router, Link, Route, Switch } from "react-router-dom";
 import { NearConfig, StorageCostPerByte, useNear } from "./data/near";
 import EditorPage from "./pages/EditorPage";
@@ -110,25 +111,27 @@ function App(props) {
   };
 
   return (
-    <div className="App">
-      <Router basename={process.env.PUBLIC_URL}>
-        <Switch>
-          <Route path={"/embed/:widgetSrc*"}>
-            <EmbedPage {...passProps} />
-          </Route>
-          <Route path={"/edit/:widgetSrc*"}>
-            <Sidebar {...passProps}>
-              <EditorPage {...passProps} />
-            </Sidebar>
-          </Route>
-          <Route path={"/:widgetSrc*"}>
-            <Sidebar {...passProps}>
-              <ViewPage {...passProps} />
-            </Sidebar>
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+    <ChakraProvider>
+      <div className="App">
+        <Router basename={process.env.PUBLIC_URL}>
+          <Switch>
+            <Route path={"/embed/:widgetSrc*"}>
+              <EmbedPage {...passProps} />
+            </Route>
+            <Route path={"/edit/:widgetSrc*"}>
+              <Sidebar {...passProps}>
+                <EditorPage {...passProps} />
+              </Sidebar>
+            </Route>
+            <Route path={"/:widgetSrc*"}>
+              <Sidebar {...passProps}>
+                <ViewPage {...passProps} />
+              </Sidebar>
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+    </ChakraProvider>
   );
 }
 
